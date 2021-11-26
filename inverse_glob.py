@@ -2,14 +2,31 @@
 # 
 # author: Frank Löffler <frank.loeffler@uni-jena.de>
 # license: CC0
+#
+# This can be used, e.g., as part of the shell prompt, to not display the
+# full path (may be longer than a line), but shorten it as much as
+# uniquely possible:
+# 
+# For bash: instead of '\w' within $PS1, use
+#    '$(pwd | /PATH_TO_BIN/inverse_glob.py)'
+# 
+# Note that this will result in more file lookups within all parent paths
+# every time this is executes, i.e., every time you get a new prompt. This
+# means this can be quite slow if your current directory is inside a slow
+# network mount, for exampe.
+# I use the following to exclude filesystems I know are slow. This may not
+# be the best method though, and likely will need tweaking on your part to
+# work for you:
+# 
+# '$(if stat -f -c %T "`pwd`" | grep -q fuseblk; then pwd; else pwd | /PATH_TO_BIN/inverse_glob.py; fi)'
 
 import sys, os
 
 # How many characters should be shown at least for each directory level?
 min_chars_shown = 3
-# Look for matches only for directories. This results in potentially shorter
-# strings, but copying those partially might, if the last component is shortened,
-# also match files and thus, might surprise you
+# Match only directories. This results in potentially shorter strings, but
+# copying those partially might, if the last component is shortened,
+# also match files and thus, might surprise you in ways you don't like.
 glob_only_on_directories = False
 
 # get $HOME to use ~
