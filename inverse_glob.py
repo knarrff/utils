@@ -11,7 +11,7 @@
 #    '$(pwd | /PATH_TO_BIN/inverse_glob.py)'
 # 
 # Note that this will result in more file lookups within all parent paths
-# every time this is executes, i.e., every time you get a new prompt. This
+# every time this is executed, i.e., every time you get a new prompt. This
 # means this can be quite slow if your current directory is inside a slow
 # network mount, for exampe.
 # I use the following to exclude filesystems I know are slow. This may not
