@@ -53,7 +53,7 @@ for path in sys.stdin:
         shortpath = os.sep
     # now go through each path component (directory)
     for component in remaining.split(os.sep):
-        # find all subdirectories
+        # find all subdirectories or all entries, depending on glob_only_on_directories
         subdirs = [d for d in os.listdir(buildpath) if not glob_only_on_directories or os.path.isdir(os.path.join(buildpath, d))]
         # find the maximum length of a common prefix between the current component
         # and any subdirectory (to see where, if at all, to put the cut-off)
