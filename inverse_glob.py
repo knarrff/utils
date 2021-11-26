@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+# 
+# author: Frank Löffler <frank.loeffler@uni-jena.de>
+# license: CC0
+
 import sys, os
 
 # How many characters should be shown at least for each directory level?
