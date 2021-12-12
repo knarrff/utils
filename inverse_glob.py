@@ -70,4 +70,7 @@ for path in sys.stdin:
         else:
             shortpath += component[:maxcommon+1] + '*' + os.sep
         buildpath += component + os.sep
+    # remove last path separator
+    if shortpath[-1] == os.sep:
+        shortpath = shortpath[:-1]
     print(shortpath)
